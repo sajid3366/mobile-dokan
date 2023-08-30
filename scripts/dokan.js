@@ -1,4 +1,4 @@
-const loadPhone = async (searchText,isShowAll) => {
+const loadPhone = async (searchText ='13', isShowAll) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
     const data = await res.json();
     const phones = data.data;
@@ -7,27 +7,27 @@ const loadPhone = async (searchText,isShowAll) => {
 }
 
 const displayPhones = (phones, isShowAll) => {
-    console.log(phones);
+    // console.log(phones);
     const phoneContainer = document.getElementById('phone-container');
     phoneContainer.textContent = '';
 
     const showAllContainer = document.getElementById('show-all-container');
-    if(phones.length > 12 && !isShowAll){
+    if (phones.length > 12 && !isShowAll) {
         showAllContainer.classList.remove('hidden');
     }
-    else{
+    else {
         showAllContainer.classList.add('hidden');
 
-    }   
-    if(!isShowAll){
-        phones = phones.slice(0,12);
+    }
+    if (!isShowAll) {
+        phones = phones.slice(0, 12);
     }
 
-    
-    
+
+
 
     phones.forEach(phone => {
-        console.log(phone);
+        // console.log(phone);
         const phoneCard = document.createElement('div');
         phoneCard.classList = `card p-4 bg-base-100 shadow-xl`;
         phoneCard.innerHTML = `
@@ -49,10 +49,29 @@ const displayPhones = (phones, isShowAll) => {
 const showDetailBtn = async (id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
     const data = await res.json();
-    console.log(data);
-
+    const phone = data.data;
+    showModal(phone);
 
 }
+
+const showModal = (phone) => {
+    console.log(phone);
+    const showDetailContainer = document.getElementById('show-detail-container');
+    showDetailContainer.classList = ``
+    showDetailContainer.innerHTML = `
+        <img src="${phone.image}" alt="">
+        <h3 class="text-xl font-semibold mt-2 mb-2">Model: ${phone.name}</h3>
+        <p><span class="font-semibold">Display Size: </span>${phone.mainFeatures.displaySize}</p>
+        <p><span class="font-semibold">Memory: </span>${phone.mainFeatures.memory}</p>
+        <p><span class="font-semibold">Sensors: </span>${phone.mainFeatures.sensors}</p>
+        <p><span class="font-semibold">Storage: </span>${phone.mainFeatures.storage}</p>
+
+    
+    `
+    show_detail_modal.showModal();
+
+}
+
 
 // for search btn
 
@@ -63,17 +82,16 @@ const handleSearch = (isShowAll) => {
     const searchFieldText = searchField.value;
     // console.log(searchFieldText);
     loadPhone(searchFieldText, isShowAll);
-    
 
 }
 
 const toggleSpinner = (isLoading) => {
     const loadingSpinner = document.getElementById('loading');
-    if(isLoading){
+    if (isLoading) {
         loadingSpinner.classList.remove('hidden');
 
     }
-    else{
+    else {
         loadingSpinner.classList.add('hidden');
 
     }
@@ -85,4 +103,5 @@ const showAllBtn = () => {
 }
 
 
-// loadPhone();
+
+loadPhone();

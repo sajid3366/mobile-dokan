@@ -27,16 +27,30 @@
                 <span class="loading loading-spinner text-accent  mt-12"></span>
 
             </div>
-            
+
             <div class="grid grid-cols-3 gap-4 mt-12" id="phone-container">
             </div>
             <!-- show all btn -->
             <div id="show-all-container" class="text-center m-3 hidden">
-            <button onclick="showAllBtn()" class="btn btn-success text-white">Show All</button>
+                <button onclick="showAllBtn()" class="btn btn-success text-white">Show All</button>
 
             </div>
 
         </section>
+
+        <!-- Open the modal using ID.showModal() method -->
+        <dialog id="show_detail_modal" class="modal">
+            <form method="dialog" class="modal-box">
+                <div id="show-detail-container">
+
+                </div>
+                <div class="modal-action">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                </div>
+            </form>
+        </dialog>
+
     </main>
 
 
