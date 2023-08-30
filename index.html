@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Dokan</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.3/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="max-w-7xl m-auto">
+    <header>
+
+    </header>
+
+    <main>
+        <section>
+            <div class="bg-sky-400 mt-24 gap-x-3 px-4 py-3">
+                <input id="search-field" class=" px-4 py-2 " type="text" placeholder="Search here">
+                <button onclick="handleSearch()" class="btn btn-success text-white">Search</button>
+
+            </div>
+            <div id="loading" class="text-center hidden">
+                <span class="loading loading-spinner text-accent  mt-12"></span>
+
+            </div>
+            
+            <div class="grid grid-cols-3 gap-4 mt-12" id="phone-container">
+            </div>
+            <!-- show all btn -->
+            <div id="show-all-container" class="text-center m-3 hidden">
+            <button onclick="showAllBtn()" class="btn btn-success text-white">Show All</button>
+
+            </div>
+
+        </section>
+    </main>
+
+
+    <script src="scripts/dokan.js"></script>
+</body>
+
+</html>
